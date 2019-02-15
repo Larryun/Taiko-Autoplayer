@@ -1,4 +1,4 @@
-# Taiko Cheat
+# Taiko Autoplayer
 
 An simple auto play script for Taiko the web game.
 ### 99% Accuracy!
