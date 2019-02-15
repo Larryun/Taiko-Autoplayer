@@ -13,7 +13,8 @@ offset_y = 0
 # box = [0+offset_x, 0+offset_y, 800+offset_x, 522+offset_y]
 box = [440+offset_x, 355+offset_y, 600+offset_x, 522+offset_y]
 sensor1 = (80, 79)
-sensor = (135-10, 86)
+sensor_offset = -10
+sensor = (135+sensor_offset, 86)
 orange_sensor = (78, 72)
 # sensor = [71, 39, 73, 122]
 mon = {'top': box[1], 'left': box[0],
@@ -51,21 +52,22 @@ def rgb_to_hex(rgb):
     return '%02x%02x%02x' % (rgb[0], rgb[1], rgb[2])
 
 wait = ''
-def play_taiko(screen, beats=0.04):
+def play_taiko(screen, beats=0.03):
     global wait
     # print(screen[sensor[1]][sensor[0]])
     color1 = rgb_to_hex(screen[sensor1[1]][sensor1[0]])
     color = rgb_to_hex(screen[sensor[1]][sensor[0]])
+    # print(color)
     color2 = rgb_to_hex(screen[orange_sensor[1]][orange_sensor[0]])
     if color == red:
         push('j')
-        time.sleep(beats)
+        # time.sleep(beats)
     elif color == blue:
         push('k')
-        time.sleep(beats)
+        # time.sleep(beats)
     elif color == yellow:
         random_push()
-    elif color2 == orange:
+    elif color == orange:
         random_push()
     # if color1 == white and wait != '':
     #     push(wait)
@@ -89,8 +91,8 @@ while(True):
     screen = get_image_array(sct)
     # cv2.imshow('rgb', screen)
     # cv2.waitKey(0)
-    # plt.imshow(screen)
-    # plt.show()
+    plt.imshow(screen)
+    plt.show()
     play_taiko(screen)
     # Frame counter
     count += 1
